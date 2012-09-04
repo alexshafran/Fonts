@@ -66,8 +66,8 @@
     
     // Configure the cell...
     
-    cell.textLabel.font = [UIFont fontWithName:fontList[indexPath.row] size:17];
-    cell.textLabel.text = fontList[indexPath.row];
+    cell.textLabel.font = [UIFont fontWithName:[fontList objectAtIndex:indexPath.row] size:17];
+    cell.textLabel.text = [fontList objectAtIndex:indexPath.row];
                            
     return cell;
 }
@@ -78,7 +78,7 @@
 {
     
     if ([_delegate respondsToSelector:@selector(fontSelectionViewControllerDidExitWithFontName:)]) {
-        [_delegate fontSelectionViewControllerDidExitWithFontName:fontList[indexPath.row]];
+        [_delegate fontSelectionViewControllerDidExitWithFontName:[fontList objectAtIndex:indexPath.row]];
     }    
 }
 

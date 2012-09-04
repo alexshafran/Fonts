@@ -96,7 +96,8 @@
         [[fontView editTextView] resignFirstResponder];
         fontView.editTextView.textAlignment = UITextAlignmentCenter;
         [[fontView editTextView] setText:kFontPreviewText];
-        CGSize size = [kFontPreviewText sizeWithFont:[UIFont fontWithName:_font size:28] constrainedToSize:CGSizeMake(fontView.editTextView.frame.size.width, 1000) lineBreakMode:NSLineBreakByCharWrapping];
+        CGSize size = [kFontPreviewText sizeWithFont:[UIFont fontWithName:_font size:28] constrainedToSize:CGSizeMake(fontView.editTextView.frame.size.width, 1000) lineBreakMode:UILineBreakModeCharacterWrap];
+        
         [UIView animateWithDuration:.2 animations:^{
             fontView.titleLabel.frame = CGRectMake(0, -10, self.view.frame.size.width, 44);
             fontView.editTextView.frame = CGRectMake(10, 45, self.view.frame.size.width - 20, size.height + 20);

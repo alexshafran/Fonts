@@ -208,7 +208,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     FontDetailViewController *fontViewController = [[FontDetailViewController alloc] initWithNibName:nil bundle:nil];
-    [fontViewController setFont:_filterResults[indexPath.row]];
+    [fontViewController setFont:[_filterResults objectAtIndex:indexPath.row]];
     
     [self.navigationController pushViewController:fontViewController animated:YES];
 }
