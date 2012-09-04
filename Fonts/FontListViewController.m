@@ -71,13 +71,7 @@
 - (void)styleControlValueChanged:(id)sender {
     
     int value = ((UISegmentedControl*)sender).selectedSegmentIndex;
-    NSLog(@"style control value changed: %i", value);
     [self loadTableView:self.tableView withStyle:(StyleType)value];
-    
-}
-
-- (void)sortControlValueChanged:(id)sender {
-    
     
 }
 

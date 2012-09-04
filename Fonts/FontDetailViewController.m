@@ -57,12 +57,12 @@
     
     [[fontView fontSizeSlider] setMinimumValue:28];
     [[fontView fontSizeSlider] setMaximumValue:100];
-    [[fontView fontSizeSlider] setValue:28];
     [[fontView fontSizeSlider] addTarget:self action:@selector(sliderMoved:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    [[fontView fontSizeSlider] setValue:28];
     [[fontView titleLabel] setFont:[UIFont fontWithName:_font size:20]];
     [[fontView titleLabel] setText:_font];
     [[fontView editTextView] setFont:[UIFont fontWithName:_font size:28]];

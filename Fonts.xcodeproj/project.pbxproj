@@ -474,14 +474,14 @@
 		FA92AFDD15EFF89000C8C42A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Thomas Shafran";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Thomas Shafran";
+				CODE_SIGN_IDENTITY = "iPhone Developer: alex shafran (294M2V4E55)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fonts/Fonts-Prefix.pch";
 				INFOPLIST_FILE = "Fonts/Fonts-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3E06CFFF-3FB7-4B84-9855-E4630CBFFE70";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E06CFFF-3FB7-4B84-9855-E4630CBFFE70";
+				PROVISIONING_PROFILE = "86B68989-DCE0-4430-BFDC-26913192CD4E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -490,13 +490,13 @@
 		FA92AFDE15EFF89000C8C42A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Thomas Shafran";
+				CODE_SIGN_IDENTITY = "iPhone Developer: alex shafran (294M2V4E55)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Thomas Shafran";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fonts/Fonts-Prefix.pch";
 				INFOPLIST_FILE = "Fonts/Fonts-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3E06CFFF-3FB7-4B84-9855-E4630CBFFE70";
+				PROVISIONING_PROFILE = "86B68989-DCE0-4430-BFDC-26913192CD4E";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E06CFFF-3FB7-4B84-9855-E4630CBFFE70";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
