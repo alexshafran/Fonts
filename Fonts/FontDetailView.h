@@ -13,4 +13,5 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UITextView *editTextView;
 @property (nonatomic, strong) UISlider *fontSizeSlider;
+@property (nonatomic, strong) UISegmentedControl *previewTextControl;
 @end

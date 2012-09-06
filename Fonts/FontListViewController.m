@@ -185,12 +185,12 @@
     if (!cell) {
         
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = [_filterResults objectAtIndex:indexPath.row];
-    cell.textLabel.font = [UIFont fontWithName:[_filterResults objectAtIndex:indexPath.row] size:17];
-    
+
+    NSString *fontname = [_filterResults objectAtIndex:indexPath.row];
+    [cell.textLabel setText:fontname];
+    [cell.textLabel setFont:[UIFont fontWithName:fontname size:17]];
     
     return cell;
 }

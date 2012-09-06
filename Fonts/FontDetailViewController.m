@@ -22,7 +22,10 @@
 
 @end
 
-#define kFontPreviewText @"ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n1234567890"
+#define kFontPreviewTextAlphaNumeric @"ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n1234567890"
+#define kFontPreviewTextQuickFox @"The quick brown fox jumps over the lazy dog."
+#define kFontPreviewTextNumeric @"123\n456\n7890"
+#define kFontPreviewTextSymbol @"[ ] { } # & ^ * + = _ \\ / | ~ < > . , ? ! ' @ $ % ( ) : ;"
 
 @implementation FontDetailViewController
 
@@ -58,11 +61,15 @@
     [[fontView fontSizeSlider] setMinimumValue:28];
     [[fontView fontSizeSlider] setMaximumValue:100];
     [[fontView fontSizeSlider] addTarget:self action:@selector(sliderMoved:) forControlEvents:UIControlEventValueChanged];
+    [[fontView previewTextControl] setSelectedSegmentIndex:0];
+    [[fontView previewTextControl] addTarget:self action:@selector(changePreviewText:) forControlEvents:UIControlEventValueChanged];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    [[fontView fontSizeSlider] setValue:28];
+    [[fontView fontSizeSlider] setValue:28 animated:YES];
     [[fontView titleLabel] setFont:[UIFont fontWithName:_font size:20]];
     [[fontView titleLabel] setText:_font];
     [[fontView editTextView] setFont:[UIFont fontWithName:_font size:28]];
@@ -88,32 +95,73 @@
     [[fontView editTextView] setFont:[UIFont fontWithName:_font size:value]];
 }
 
+- (void)changePreviewText:(id)sender {
+    
+    int value = fontView.previewTextControl.selectedSegmentIndex;
+
+    NSString *placeholderText;
+    int fontSize;
+    UILineBreakMode lineBreakMode = UILineBreakModeCharacterWrap;
+    
+    switch (value) {
+        case 0:
+            placeholderText = kFontPreviewTextAlphaNumeric;
+            fontSize = 28;
+            break;
+        case 1:
+            placeholderText = kFontPreviewTextQuickFox;
+            fontSize = 40;
+            lineBreakMode = UILineBreakModeWordWrap;
+            break;
+        case 2:
+            placeholderText = kFontPreviewTextNumeric;
+            fontSize = 50;
+            break;
+        case 3:
+            placeholderText = kFontPreviewTextSymbol;
+            fontSize = 35;
+            break;
+        default:
+            break;
+    }
+    
+    [[fontView editTextView] setFont:[UIFont fontWithName:_font size:fontSize]];
+    [[fontView editTextView] setText:placeholderText];
+//    [[fontView fontSizeSlider] setValue:fontSize];
+    CGSize size = [placeholderText sizeWithFont:[UIFont fontWithName:_font size:fontSize] constrainedToSize:CGSizeMake(fontView.editTextView.frame.size.width - 10, 1000) lineBreakMode:lineBreakMode];
+    [UIView animateWithDuration:0.25f delay:0.00f options:UIViewAnimationCurveEaseIn animations:^{
+        fontView.editTextView.frame = CGRectMake(10, 45, self.view.frame.size.width - 20, MIN(size.height + 20, 220));
+        [[fontView fontSizeSlider] setValue:fontSize];
+    }completion:^(BOOL finished){}];
+    
+}
+
 - (void)prepareForState:(EditingState)editingState {
     
     if (editingState == kEditingStatePreview) {
 
         [self.navigationItem setRightBarButtonItem:familyButton animated:YES];
         [[fontView editTextView] resignFirstResponder];
+        fontView.editTextView.editable = NO;
         fontView.editTextView.textAlignment = UITextAlignmentCenter;
-        [[fontView editTextView] setText:kFontPreviewText];
-        CGSize size = [kFontPreviewText sizeWithFont:[UIFont fontWithName:_font size:28] constrainedToSize:CGSizeMake(fontView.editTextView.frame.size.width, 1000) lineBreakMode:UILineBreakModeCharacterWrap];
+        [self changePreviewText:nil];
         
-        [UIView animateWithDuration:.2 animations:^{
+        [UIView animateWithDuration:0.25f delay:0.00f options:UIViewAnimationCurveEaseIn animations:^{
             fontView.titleLabel.frame = CGRectMake(0, -10, self.view.frame.size.width, 44);
-            fontView.editTextView.frame = CGRectMake(10, 45, self.view.frame.size.width - 20, size.height + 20);
-            fontView.fontSizeSlider.alpha = 1.0f;
-        }];
+            fontView.fontSizeSlider.frame = CGRectMake(50, 300, 220, 20);
+        }completion:^(BOOL finished){}];
         
     } else {
         
         [self.navigationItem setRightBarButtonItem:clearButton animated:YES];
+        fontView.editTextView.editable = YES;
         [[fontView editTextView] becomeFirstResponder];
         [fontView.editTextView setText:@""];
         fontView.editTextView.textAlignment = UITextAlignmentLeft;
-        [UIView animateWithDuration:.2 animations:^{
+        [UIView animateWithDuration:.25 animations:^{
             fontView.titleLabel.frame = CGRectMake(0, -20, self.view.frame.size.width, 44);
-            fontView.editTextView.frame = CGRectMake(10, 25, self.view.frame.size.width - 20, 140);
-            fontView.fontSizeSlider.alpha = 0.0f;
+            fontView.editTextView.frame = CGRectMake(10, 25, self.view.frame.size.width - 20, 100);
+            fontView.fontSizeSlider.frame = CGRectMake(50, 142, 220, 20);
         }];
     
     }

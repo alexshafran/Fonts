@@ -33,6 +33,15 @@
         _fontSizeSlider.minimumTrackTintColor = [UIColor orangeColor];
         [self addSubview:_fontSizeSlider];
         
+//        _previewTextControl = [[UISegmentedControl alloc] initWithItems:@[@"A-Za-z0-9", @"Sample", @"0-9", @"Sym"]];
+        _previewTextControl = [[UISegmentedControl alloc] initWithItems:@[@"ABC", @"Sample", @"#", @"Sym"]];
+        _previewTextControl.segmentedControlStyle = UISegmentedControlStyleBar;
+        UIBarButtonItem *segmentedControlButton = [[UIBarButtonItem alloc] initWithCustomView:_previewTextControl];
+        UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        UIToolbar *bottomBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 44 - 20 - 44, self.frame.size.width, 44)];
+        [bottomBar setItems:@[flexibleSpace, segmentedControlButton, flexibleSpace] animated:YES];
+        [self addSubview:bottomBar];
+        
     }
     return self;
 }
