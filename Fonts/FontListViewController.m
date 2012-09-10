@@ -13,6 +13,7 @@
 
     UISearchBar *searchBar;
     UIBarButtonItem * searchButton;
+    UISegmentedControl *styleControl;
 }
 
 @end
@@ -36,7 +37,7 @@
     [self loadAllFonts];
     [self loadTableView:self.tableView withSortType:kSortTypeAlphabetical];
     
-    UISegmentedControl *styleControl = [[UISegmentedControl alloc] initWithItems:
+    styleControl = [[UISegmentedControl alloc] initWithItems:
                                         @[[UIImage imageNamed:@"all.png"],
                                         [UIImage imageNamed:@"regular.png"],
                                         [UIImage imageNamed:@"bold.png"],
@@ -219,7 +220,9 @@
     
     _filterResults = [_fontList mutableCopy];
     [_filterResults sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    [self loadTableView:self.tableView withStyle:(StyleType)styleControl.selectedSegmentIndex];
     
+
 }
 
 @end
