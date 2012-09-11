@@ -3,6 +3,8 @@ Fonts
 
 An iPhone utility that lets the user browse the fonts available on the device. The user can select any font to view sample text or demo custom text.  
 
+![Screenshots](https://github.com/alexshafran/Fonts/blob/master/screenshots/screenshotsAll.png?raw=true)
+
 License
 =======
 
