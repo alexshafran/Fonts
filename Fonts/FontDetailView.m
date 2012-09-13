@@ -25,15 +25,7 @@
         _titleLabel.adjustsFontSizeToFitWidth = YES;
         [self addSubview:_titleLabel];
         
-        _editTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 45, frame.size.width - 20, 200)];
-        _editTextView.layer.cornerRadius = 5;
-        [self addSubview:_editTextView];
-        
-        _fontSizeSlider = [[UISlider alloc] initWithFrame:CGRectMake(50, 300, 220, 20)];
-        _fontSizeSlider.minimumTrackTintColor = [UIColor orangeColor];
-        [self addSubview:_fontSizeSlider];
-        
-//        _previewTextControl = [[UISegmentedControl alloc] initWithItems:@[@"A-Za-z0-9", @"Sample", @"0-9", @"Sym"]];
+        //        _previewTextControl = [[UISegmentedControl alloc] initWithItems:@[@"A-Za-z0-9", @"Sample", @"0-9", @"Sym"]];
         _previewTextControl = [[UISegmentedControl alloc] initWithItems:@[@"ABC", @"Sample", @"#", @"Sym"]];
         _previewTextControl.segmentedControlStyle = UISegmentedControlStyleBar;
         UIBarButtonItem *segmentedControlButton = [[UIBarButtonItem alloc] initWithCustomView:_previewTextControl];
@@ -41,6 +33,14 @@
         UIToolbar *bottomBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 44 - 20 - 44, self.frame.size.width, 44)];
         [bottomBar setItems:@[flexibleSpace, segmentedControlButton, flexibleSpace] animated:YES];
         [self addSubview:bottomBar];
+        
+        _editTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 45, frame.size.width - 20, 200)];
+        _editTextView.layer.cornerRadius = 5;
+        [self addSubview:_editTextView];
+        
+        _fontSizeSlider = [[UISlider alloc] initWithFrame:CGRectMake(50, 300, 220, 20)];
+        _fontSizeSlider.minimumTrackTintColor = [UIColor orangeColor];
+        [self addSubview:_fontSizeSlider];
         
     }
     return self;

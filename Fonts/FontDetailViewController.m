@@ -27,6 +27,7 @@
 #define kFontPreviewTextNumeric @"123\n456\n7890"
 #define kFontPreviewTextSymbol @"[ ] { } # & ^ * + = _ \\ / | ~ < > . , ? ! ' @ $ % ( ) : ;"
 
+#define isFourInchScreen self.view.frame.size.height > 480
 @implementation FontDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -72,7 +73,6 @@
     [[fontView fontSizeSlider] setValue:28 animated:YES];
     [[fontView titleLabel] setFont:[UIFont fontWithName:_font size:20]];
     [[fontView titleLabel] setText:_font];
-    [[fontView editTextView] setFont:[UIFont fontWithName:_font size:28]];
     
     stateControl.selectedSegmentIndex = 0;
     [self prepareForState:kEditingStatePreview];
@@ -106,34 +106,41 @@
     switch (value) {
         case 0:
             placeholderText = kFontPreviewTextAlphaNumeric;
-            fontSize = 28;
+            fontSize = isFourInchScreen ? 35 : 28;
             break;
         case 1:
             placeholderText = kFontPreviewTextQuickFox;
-            fontSize = 40;
+            fontSize = isFourInchScreen ? 40: 35;
             lineBreakMode = UILineBreakModeWordWrap;
             break;
         case 2:
             placeholderText = kFontPreviewTextNumeric;
-            fontSize = 50;
+            fontSize = isFourInchScreen ? 70 : 50;
             break;
         case 3:
             placeholderText = kFontPreviewTextSymbol;
-            fontSize = 35;
+            fontSize = isFourInchScreen ? 50 : 35;
             break;
         default:
             break;
     }
     
-    [[fontView editTextView] setFont:[UIFont fontWithName:_font size:fontSize]];
-    [[fontView editTextView] setText:placeholderText];
-//    [[fontView fontSizeSlider] setValue:fontSize];
-    CGSize size = [placeholderText sizeWithFont:[UIFont fontWithName:_font size:fontSize] constrainedToSize:CGSizeMake(fontView.editTextView.frame.size.width - 10, 1000) lineBreakMode:lineBreakMode];
-    [UIView animateWithDuration:0.25f delay:0.00f options:UIViewAnimationCurveEaseIn animations:^{
-        fontView.editTextView.frame = CGRectMake(10, 45, self.view.frame.size.width - 20, MIN(size.height + 20, 220));
-        [[fontView fontSizeSlider] setValue:fontSize];
-    }completion:^(BOOL finished){}];
+    [self resizeFontViewWithFont:[UIFont fontWithName:_font size:fontSize] text:placeholderText lineBreakMode:lineBreakMode];
     
+}
+
+- (void)resizeFontViewWithFont:(UIFont*)font text:(NSString*)text lineBreakMode:(UILineBreakMode)lineBreakMode {
+    
+    [[fontView editTextView] setFont:font];
+    [[fontView editTextView] setText:text];
+    CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake(fontView.editTextView.frame.size.width - 10, 1000) lineBreakMode:lineBreakMode];
+    CGRect toolbarFrame = [fontView.previewTextControl convertRect:fontView.previewTextControl.frame toView:fontView];
+    CGRect editViewFrame = CGRectMake(10, 45, self.view.frame.size.width - 20, MIN(size.height + 20, toolbarFrame.origin.y - 44*4));
+    [UIView animateWithDuration:0.25f delay:0.00f options:UIViewAnimationCurveEaseIn animations:^{
+        fontView.editTextView.frame = editViewFrame;
+        fontView.fontSizeSlider.center = CGPointMake(self.view.frame.size.width / 2, (CGRectGetMaxY(editViewFrame) + toolbarFrame.origin.y) / 2);
+        [[fontView fontSizeSlider] setValue:font.pointSize];
+    }completion:^(BOOL finished){}];
 }
 
 - (void)prepareForState:(EditingState)editingState {
@@ -148,7 +155,6 @@
         
         [UIView animateWithDuration:0.25f delay:0.00f options:UIViewAnimationCurveEaseIn animations:^{
             fontView.titleLabel.frame = CGRectMake(0, -10, self.view.frame.size.width, 44);
-            fontView.fontSizeSlider.frame = CGRectMake(50, 300, 220, 20);
         }completion:^(BOOL finished){}];
         
     } else {
@@ -160,8 +166,8 @@
         fontView.editTextView.textAlignment = UITextAlignmentLeft;
         [UIView animateWithDuration:.25 animations:^{
             fontView.titleLabel.frame = CGRectMake(0, -20, self.view.frame.size.width, 44);
-            fontView.editTextView.frame = CGRectMake(10, 25, self.view.frame.size.width - 20, 100);
-            fontView.fontSizeSlider.frame = CGRectMake(50, 142, 220, 20);
+            fontView.editTextView.frame = isFourInchScreen ? CGRectMake(10, 25, self.view.frame.size.width - 20, 160) : CGRectMake(10, 25, self.view.frame.size.width - 20, 100);
+            fontView.fontSizeSlider.frame = isFourInchScreen ? CGRectMake(50, 215, 220, 20) : CGRectMake(50, 142, 220, 20);
         }];
     
     }

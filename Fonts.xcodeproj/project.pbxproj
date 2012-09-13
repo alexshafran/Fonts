@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA018ECE1602499D007358D4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA018ECD1602499D007358D4 /* Default-568h@2x.png */; };
 		FA1A7F5715F4491F00584A74 /* FontDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A7F5615F4491F00584A74 /* FontDetailView.m */; };
 		FA1A7F5915F44E9100584A74 /* detailBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA1A7F5815F44E9100584A74 /* detailBG@2x.png */; };
 		FA1A7F5B15F46E0200584A74 /* family@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA1A7F5A15F46E0200584A74 /* family@2x.png */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA018ECD1602499D007358D4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		FA1A7F5515F4491F00584A74 /* FontDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontDetailView.h; sourceTree = "<group>"; };
 		FA1A7F5615F4491F00584A74 /* FontDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontDetailView.m; sourceTree = "<group>"; };
 		FA1A7F5815F44E9100584A74 /* detailBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detailBG@2x.png"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		FA92AFA415EFF89000C8C42A = {
 			isa = PBXGroup;
 			children = (
+				FA018ECD1602499D007358D4 /* Default-568h@2x.png */,
 				FA3F1C1915F5BD0900BE8F33 /* icon@2x.png */,
 				FA3F1C1715F5BCFF00BE8F33 /* icon.png */,
 				FA92AFB915EFF89000C8C42A /* Fonts */,
@@ -339,6 +342,7 @@
 				FA3F1C1615F5BCF300BE8F33 /* detailBG.png in Resources */,
 				FA3F1C1815F5BCFF00BE8F33 /* icon.png in Resources */,
 				FA3F1C1A15F5BD0900BE8F33 /* icon@2x.png in Resources */,
+				FA018ECE1602499D007358D4 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +483,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fonts/Fonts-Prefix.pch";
 				INFOPLIST_FILE = "Fonts/Fonts-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "86B68989-DCE0-4430-BFDC-26913192CD4E";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -495,6 +500,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fonts/Fonts-Prefix.pch";
 				INFOPLIST_FILE = "Fonts/Fonts-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "86B68989-DCE0-4430-BFDC-26913192CD4E";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E06CFFF-3FB7-4B84-9855-E4630CBFFE70";
